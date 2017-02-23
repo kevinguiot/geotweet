@@ -1,6 +1,4 @@
 <?php
-// On inclut la classe
-require_once('class/twitter.class.php');
 
 // On vérifie que nous ne sommes pas connectés
 if(!isConnectToTwitter()) {
@@ -14,7 +12,7 @@ if(!isConnectToTwitter()) {
             // On ajoute la valeur dans la variable nommée par le cookie
             ${$key} = $post;
         }
-        
+
         // Si toutes les informations de connexion sont mentionnées
         if(
            !empty($consumerKey) &&
@@ -22,7 +20,7 @@ if(!isConnectToTwitter()) {
            !empty($accessToken) &&
            !empty($accessTokenSecret)
         ) {
-        
+
             // On se connecte à Twitter avec les informations mentionnées
             $twitter = new Twitter(
                 $consumerKey,
@@ -31,29 +29,23 @@ if(!isConnectToTwitter()) {
                 $accessTokenSecret
             );
             
-            // On effectue un test de récupération d'informations
-            try {
-                
-                //On récupère les tweets qui contiennent le hashtag #php
-                $results = $twitter->search('#php');
-                
-                // On parcourt le nom des cookies
-                foreach($cookies as $cookie) {
-                    
-                    // On enregistre le cookie
-                    setcookie($cookie, ${$cookie});
-                }
-                
-                // On redirige l'utilisateur
-                header('location: index.php');
-                exit;
+            $testConnexionTwitter = testConnexionTwitter($twitter);
             
-            } catch (Exception $e) {
-                
-                //On affiche l'erreur renvoyée.
-                echo 'Une erreur s\'est produite: <br><b>',  $e->getMessage(), "</b>";
+            if($testConnexionTwitter) {
+            // On parcourt le nom des cookies
+            foreach($cookies as $cookie) {
+            
+            // On enregistre le cookie
+            setcookie($cookie, ${$cookie});
             }
-        
+            
+            // On redirige l'utilisateur
+            header('location: index.php');
+            exit;
+            } else {
+            echo "<b>Une erreur s'est produite lors de la connexion à Twitter.</b>"
+            }
+
         } else {
             echo "<b>Veuillez remplir toutes les informations.</b>";
         }
