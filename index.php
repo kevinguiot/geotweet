@@ -13,9 +13,7 @@ if(!isConnectToTwitter()) {
     include('login.php');
     
 } else {
-    
-    // On redirige l'utilisateur sur les pages connectées
-    echo "ok";
-    
+    // On affiche la maps
+    include('maps.php');
 }
 ?>
