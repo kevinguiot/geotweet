@@ -8,7 +8,8 @@
 function isConnectToTwitter() {
     
     // Déclaration
-    $isConnect = false;
+    $isConnect = true;
+    $testConnexionTwitter = false;
 
     // On récupère le nom des cookies
     global $cookies;
@@ -22,17 +23,21 @@ function isConnectToTwitter() {
             $isConnect = false;
         }
     }
+        
+    // Si les cookies sont présents
+    if($isConnect) {
+        
+        // On se connecte à Twitter avec les informations mentionnées
+        $twitter = new Twitter(
+            $consumerKey,
+            $consumerSecret,
+            $accessToken,
+            $accessTokenSecret
+        );
     
-    // On se connecte à Twitter avec les informations mentionnées
-    $twitter = new Twitter(
-        $consumerKey,
-        $consumerSecret,
-        $accessToken,
-        $accessTokenSecret
-    );
-
-    // On regarde si la connexion est bonne avec Twitter
-    $testConnexionTwitter = testConnexionTwitter($twitter);
+        // On regarde si la connexion est bonne avec Twitter
+        $testConnexionTwitter = testConnexionTwitter($twitter);
+    }
     
     // On retourne la réponse
     return $testConnexionTwitter;

@@ -32,18 +32,18 @@ if(!isConnectToTwitter()) {
             $testConnexionTwitter = testConnexionTwitter($twitter);
             
             if($testConnexionTwitter) {
-            // On parcourt le nom des cookies
-            foreach($cookies as $cookie) {
-            
-            // On enregistre le cookie
-            setcookie($cookie, ${$cookie});
-            }
-            
-            // On redirige l'utilisateur
-            header('location: index.php');
-            exit;
+                // On parcourt le nom des cookies
+                foreach($cookies as $cookie) {
+                
+                    // On enregistre le cookie
+                    setcookie($cookie, ${$cookie});
+                }
+                
+                // On redirige l'utilisateur
+                header('location: index.php');
+                exit;
             } else {
-            echo "<b>Une erreur s'est produite lors de la connexion à Twitter.</b>"
+                echo "<b>Une erreur s'est produite lors de la connexion à Twitter.</b>";
             }
 
         } else {
