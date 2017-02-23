@@ -38,6 +38,7 @@ function isConnectToTwitter() {
     return $testConnexionTwitter;
 }
 
+
 /**
  * Permet de savoir si les informations de connexion à Twitter sont bonnes
  *
