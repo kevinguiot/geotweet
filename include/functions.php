@@ -8,10 +8,10 @@
 function isConnectToTwitter() {
     
     // Déclaration
-    bool $isConnect = false;
+    $isConnect = false;
 
     // On récupère le nom des cookies
-    global $cookie;
+    global $cookies;
     
     // On regarde si les cookies existent
     foreach($cookies as $cookie) {    
@@ -23,7 +23,7 @@ function isConnectToTwitter() {
         }
     }
     
-    //On retourne la réponse
+    // On retourne la réponse
     return $isConnect;
 }
 ?>
